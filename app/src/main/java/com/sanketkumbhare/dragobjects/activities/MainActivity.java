@@ -39,7 +39,15 @@ public class MainActivity extends AppCompatActivity {
         imageView=findViewById(R.id.imageview);
 
         imageView.getLocationOnScreen(array);
-
+        imageView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent ev) {
+                a=(int) ev.getRawX();
+                b=(int)ev.getRawY();
+                textView.setText("Touch at " + ev.getRawX() + ", " + ev.getRawY());
+                return true;
+            }
+        });
         btn.setOnTouchListener(onTouchListener());
     }
 
@@ -59,15 +67,7 @@ public class MainActivity extends AppCompatActivity {
                         xDelta = x - lParams.leftMargin;
                         yDelta = y - lParams.topMargin;
 
-                        imageView.setOnTouchListener(new View.OnTouchListener() {
-                            @Override
-                            public boolean onTouch(View v, MotionEvent ev) {
-                                a=(int) ev.getRawX();
-                                b=(int)ev.getRawY();
-                                textView.setText("Touch at " + ev.getRawX() + ", " + ev.getRawY());
-                                return true;
-                            }
-                        });
+
 
                         if(x == array[0] || y == array[1])
                         btn.setVisibility(View.GONE);
